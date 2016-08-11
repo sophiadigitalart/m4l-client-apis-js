@@ -16,9 +16,9 @@
  
 #####Arguments
 
-The input arguments follow the pattern \[req_id, action, args\]
-The req_id is a reference that gets sent with all responses to this action.
-Read the MaxShell.ts file to get all the supported actions and their args.
+The input arguments follow the pattern \[req_id, action, args\].  
+The req_id is a reference that gets sent with all responses to this action.  
+Read the MaxShell.ts file to get all the supported actions and their args.  
 
 		
 
