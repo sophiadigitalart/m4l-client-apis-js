@@ -1,0 +1,17 @@
+{
+	"name": "m4l-clientapis",
+	"version": "1.0.0",
+	"description": "A wrapper for Ableton Live's liveapi, meant to work with mxj-wsserver",
+	"main": "target/client-apis.js",
+	"author": "Michael Hopfner",
+	"license": "ISC",
+	"devDependencies": {
+		"browserify": "13.0.1",
+		"glob": "7.0.5",
+		"gulp": "3.9.1",
+		"gulp-inject-string": "1.1.0",
+		"vinyl-buffer": "1.0.0",
+		"vinyl-source-stream": "1.1.0",
+		"tsify": "0.16.0"
+	}
+}
