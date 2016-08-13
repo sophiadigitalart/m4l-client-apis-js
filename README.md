@@ -11,7 +11,9 @@
  - \[client_id\] \[args..\]: execute commands in args
 	
 #####Outputs:
- - \[client_id\] \[args..\]: response to previous input using this client_id
+ - \[client_id\] \[status\] \[args..\]: response to previous input using this client_id,  
+ status: 0 = ok, 1 = error,  
+ args = errormessage or response
 
  
 #####Arguments

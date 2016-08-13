@@ -78,6 +78,6 @@ export default class MaxShell {
 	}
 }
 
-function output(client_id: number, req_id: number, ...args: any[]) {
-	me.outlet.apply(me, [0, client_id, req_id].concat(args))
+function output(client_id: number, req_id: number, status: number, ...args: any[]) {
+	me.outlet.apply(me, [0, client_id, req_id, status].concat(args))
 }
