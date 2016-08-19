@@ -12,7 +12,7 @@
 	
 #####Outputs:
  - \[client_id\] \[status\] \[args..\]: response to previous input using this client_id,  
- status: 0 = ok, 1 = error,  
+ status: 0 = ok, 1 = keep-alive, 2 = error  
  args = errormessage or response
 
  

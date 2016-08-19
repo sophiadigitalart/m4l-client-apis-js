@@ -29,21 +29,21 @@ export default class MaxShell {
 		case "info":
 			var path = params.join(" ")
 			var info = client.getInfo(path)
-			if(!info) output(client_id, req_id, 1, "no info for path", path)
+			if(!info) output(client_id, req_id, 2, "no info for path", path)
 			else output(client_id, req_id, 0, info)
 			return
 		case "new":
 			var path = params.slice(0, params.length - 1).join(" ")
 			var followPath = params[params.length - 1]
 			var jsApi = client.createApi(path, followPath)
-			if(!jsApi) output(client_id, req_id, 1, "no api at path", path)
+			if(!jsApi) output(client_id, req_id, 2, "no api at path", path)
 			else output(client_id, req_id, 0, jsApi.getInfo())
 			return
 		}
 		var apikey = parseInt(params[0])
 		var api = client.getApiByKey(apikey)
 		if(!api) {
-			output(client_id, req_id, 1, "no api for key", apikey)
+			output(client_id, req_id, 2, "no api for key", apikey)
 			return
 		}
 		switch(action) {
@@ -61,11 +61,11 @@ export default class MaxShell {
 			var args = params.slice(2)
 			var ret = api.call(name, args)
 			if(ret) output(client_id, req_id, 0, ret)
-			else if(ret == null) output(client_id, req_id, 1, "no function")
+			else if(ret == null) output(client_id, req_id, 2, "no function")
 			return
 		case "observe":
 			var property = params[1]
-			api.observe(property, val => output(client_id, req_id, 0, val))
+			api.observe(property, val => output(client_id, req_id, 1, val))
 			return
 		case "unobserve":
 			var property = params[1]
