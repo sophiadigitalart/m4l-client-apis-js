@@ -60,8 +60,7 @@ export default class MaxShell {
 			var name = params[1]
 			var args = params.slice(2)
 			var ret = api.call(name, args)
-			if(ret) output(client_id, req_id, 0, ret)
-			else if(ret == null) output(client_id, req_id, 2, "no function")
+			if(ret != undefined) output(client_id, req_id, 0, ret)
 			return
 		case "observe":
 			var property = params[1]

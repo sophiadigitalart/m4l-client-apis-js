@@ -26,7 +26,9 @@ export default class JsApi {
 		return this.api.get(property)
 	}
 	call(name: string, ...args: any[]) {
-		this.api.call(name, args)
+		var ret = this.api.call(name, args)
+		if(ret[0] == "id" && ret[1] == 0) return undefined
+		return ret 
 	}
 
 	set(property: string, value: number) {

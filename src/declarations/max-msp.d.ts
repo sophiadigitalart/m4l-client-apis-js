@@ -18,7 +18,7 @@ interface LiveAPI {
 	proptype: string
 	type: string
 	
-	call: (name: string, ...args: any[]) => void
+	call: (name: string, ...args: any[]) => any
 	get: (property: string) => any
 	getcount: (child: string) => number
 	getstring: (property: string) => string
