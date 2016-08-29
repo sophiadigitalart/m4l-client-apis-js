@@ -27,6 +27,10 @@ export default class JsApi {
 	}
 	call(name: string, ...args: any[]) {
 		var ret = this.api.call(name, args)
+		//usually, success is signaled by ret [id,0] (an object, not an Array :( )
+		//error is signaled by ret 0 and a message in the max window (can it be retrieved?) 
+		//no way to distinguish between an error and the return value 0 has been found 
+		//for now -> no callback for success, callback for everything else
 		if(ret[0] == "id" && ret[1] == 0) return undefined
 		return ret 
 	}
