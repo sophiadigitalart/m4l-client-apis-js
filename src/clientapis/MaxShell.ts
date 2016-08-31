@@ -22,6 +22,7 @@ export default class MaxShell {
 
 	msg_int(client_id: number, req_id: number, action: string, ...params: any[]) {
 		var client = clients[client_id]
+		if(!client) output(client_id, req_id, 2, "no client with id", client_id)
 		switch(action) {
 		case "echo":
 			output(client_id, req_id, 0, params)
