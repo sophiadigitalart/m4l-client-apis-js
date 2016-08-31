@@ -20,7 +20,7 @@ export default class MaxShell {
 		}
 	}
 	
-	notifydeleted() { stop() }
+	notifydeleted() { this.stop() }
 
 	msg_int(client_id: number, req_id: number, action: string, ...params: any[]) {
 		var client = clients[client_id]
