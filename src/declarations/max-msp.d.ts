@@ -44,4 +44,5 @@ interface jsthis extends Maxobj {
 	msg_int: (i: number, ...args: any[]) => void
 	msg_float: (i: number, ...args: any[]) => void
 	open: () => void
+	notifydeleted: () => void
 }
