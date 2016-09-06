@@ -62,8 +62,7 @@ export default class MaxShell {
 		case "call":
 			var name = params[1]
 			var args = params.slice(2)
-			var ret = api.call(name, args)
-			if(ret != undefined) output(client_id, req_id, 0, ret)
+			output(client_id, req_id, 0, api.call(name, args))
 			return
 		case "observe":
 			var property = params[1]
