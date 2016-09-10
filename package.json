@@ -13,5 +13,8 @@
 		"vinyl-buffer": "1.0.0",
 		"vinyl-source-stream": "1.1.0",
 		"tsify": "0.16.0"
+	},
+	"dependencies": {
+		"string-split-keep": "1.0.0"		
 	}
 }

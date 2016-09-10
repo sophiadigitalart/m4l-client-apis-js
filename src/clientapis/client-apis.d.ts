@@ -1,4 +1,6 @@
 
+declare var require: (string) => any;
+
 interface ClientApis extends jsthis {
 	start: (client_id?: number) => void
 	stop: (client_id?: number) => void

@@ -1,5 +1,8 @@
 
+var ssplit = require("string-split-keep")
+
 import ApiObserver from "./ApiObserver"
+
 
 export default class JsApi {
 	private key = 0
@@ -56,7 +59,7 @@ export default class JsApi {
 				childs: [],
 		}
 		this.api.info.split("\n").forEach(line => {
-			var kv = line.splitOnce(" ")
+			var kv = ssplit(line, " ", 2)
 			switch(kv[0]) {
 			case "child": info.childs.push(kv[1]); break
 			case "children": info.children.push(kv[1]); break
