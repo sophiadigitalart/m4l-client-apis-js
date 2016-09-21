@@ -4,7 +4,7 @@ export default class ApiObserver {
 	constructor(api: LiveAPI, property: string, callback: (value: any) => void) {
 		var self = this;
 		this.api = new LiveAPI(me.patcher, val => {
-			if(val[0] == property) callback(val[1])
+			if(val.shift() == property) callback(val)
 		}, "live_set")
 		this.api.path = api.path
 		this.api.mode = api.mode
