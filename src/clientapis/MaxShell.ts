@@ -20,7 +20,10 @@ export default class MaxShell {
 		}
 	}
 	
-	notifydeleted() { this.stop() }
+	notifydeleted() { 
+		this.stop() 
+		pusher.cancel()
+	}
 
 	msg_int(client_id: number, req_id: number, action: string, ...params: any[]) {
 		var client = clients[client_id]
@@ -66,7 +69,8 @@ export default class MaxShell {
 			return
 		case "observe":
 			var property = params[1]
-			api.observe(property, val => output(client_id, req_id, 1, val))
+//			api.observe(property, val => output(client_id, req_id, 1, val))
+			api.observe(property, val => observebuffered(client_id, req_id, val))
 			return
 		case "unobserve":
 			var property = params[1]
@@ -82,3 +86,45 @@ export default class MaxShell {
 function output(client_id: number, req_id: number, status: number, ...args: any[]) {
 	me.outlet.apply(me, [0, client_id, req_id, status].concat(args))
 }
+
+
+/*
+ * When you have a lot of param updates (e.g. by moving around hard on a live-remote-params/XY-Pad),
+ * you can observe ever increasing delays.
+ * The number one way to get rid of those is to NOT have the Live App visible on the desktop. Really.
+ * It would be a little silly to ask people to do that, so here's one workaround:
+ * The observed values don't get sent immediately. Instead they are buffered and sent out every 5 ms.
+ * If an observed value changes in the meantime, only the latest value is sent.
+ * Also, the Task has to wait longer if js is too busy which kinda auto-adjusts the output.
+ *
+ * tl;dr: We trade observe-param speed for a massive boost in set-param speed.
+ * 
+ */
+
+var obuffer = []
+var pusher = new Task(outputBuffer)
+pusher.interval = 5
+pusher.repeat(-1)
+
+
+function observebuffered(client_id, req_id, val) {
+	var client = obuffer[client_id]
+	if(!client) {
+		client = []
+		obuffer[client_id] = client
+	}
+	client[req_id] = val
+}
+
+function outputBuffer() {
+	for(var cid in obuffer) {
+		var cl = obuffer[cid]
+		for(var rid in cl) {
+			output(parseInt(cid), rid, 1, cl[rid])
+			delete cl[rid]
+		}
+		if(!cl.length) delete obuffer[cid]
+	}
+}
+
+
