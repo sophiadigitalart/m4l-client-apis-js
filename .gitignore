@@ -4,7 +4,7 @@
 
 #Node
 node_modules
-
+npm-debug.log
 
 #Compile
-target
+client-apis.js
